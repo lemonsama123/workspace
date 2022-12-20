@@ -13,6 +13,8 @@ const cleanPlugin = new CleanWebpackPlugin()
 module.exports = {
     mode: 'development',
 
+    devtool: 'nosources-source-map',
+
     entry: path.join(__dirname, './src/index.js'),
     output: {
         path: path.join(__dirname, 'dist'),
