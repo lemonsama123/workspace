@@ -7,6 +7,8 @@ const htmlPlugin = new HtmlPlugin({
     filename:'./index.html'
 })
 
+const {CleanWebpackPlugin} = require('clean-webpack-plugin')
+const cleanPlugin = new CleanWebpackPlugin()
 
 module.exports = {
     mode: 'development',
@@ -14,10 +16,10 @@ module.exports = {
     entry: path.join(__dirname, './src/index.js'),
     output: {
         path: path.join(__dirname, 'dist'),
-        filename: 'bundle.js'
+        filename: 'js/bundle.js'
     },
 
-    plugins: [htmlPlugin],
+    plugins: [htmlPlugin, cleanPlugin],
 
     devServer: {
         open: true,
@@ -37,7 +39,16 @@ module.exports = {
             },
             {
                 test: /\.jpg|png|gif$/, 
-                use: 'url-loader?limit=22229'
+                use: 'url-loader?limit=470&outputPath=images'
             },
             {
-      
+                test: /\.js$/,
+                use: 'babel-loader',
+                exclude: /node_modules/
+            }
+        ]
+    }
+}
+
+
+
