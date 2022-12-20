@@ -5,6 +5,8 @@ import b from './css/index.less'
 
 import logo from './image/logo.jpg'
 
+import './js/test/info.js'
+
 $('.box').attr('src', logo)
 
 $(function () {
