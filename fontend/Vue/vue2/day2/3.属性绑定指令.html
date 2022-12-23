@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="app">
+        <input type="text" v-bind:placeholder="tips">
+
+        <hr>
+
+        <div>{{1+2}}</div>
+        <div>{{tips}} 反转的结果是：{{tips.split('').reverse().join('')}}</div>
+
+        <div :title="'box' + index">这是一个div</div>
+    </div>
+
+    <script src="./lib/vue-2.6.12.js"></script>
+    <script>
+        const vm = new Vue({
+            el: '#app',
+            data: {
+                tips: '请输入用户名',
+                index: 3
+            }
+        })
+    </script>
+</body>
+
+</html>
