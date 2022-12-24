@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <button id="postinfo">wqf</button>
+    
+    <script src="./lib/axios.js"></script>
+    <script>
+        document.querySelector('#postinfo').addEventListener('click', async function () {
+            const { data } = await axios({
+                method: 'POST',
+                url: 'http://www.liulongbin.top:3006/api/post',
+                data: {
+                    name: 'zs',
+                    age: 20
+                }
+            })
+            console.log(data);
+        })
+
+    </script>
+</body>
+
+</html>
