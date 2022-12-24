@@ -57,10 +57,10 @@
             <div class="custom-control custom-switch">
               <input type="checkbox" class="custom-control-input" :id="'customSwitch1' + item.id" v-model="item.status">
               <label class="custom-control-label" :for="'customSwitch1' + item.id">{{item.status ? '已启用' :
-                '已禁用'}}</label>
+                '未启用'}}</label>
             </div>
           </td>
-          <td>{{item.time}}</td>
+          <td>{{item.time | dateFormat}}</td>
           <td>
             <a href="javascript:;" @click="remove(item.id)">删除</a>
           </td>
@@ -70,12 +70,15 @@
   </div>
 
   <script src="./lib/vue-2.6.12.js"></script>
+  <script src="./lib/dayjs.min.js"></script>
   <script>
+    Vue.filter('dateFormat', time => {
+      return dayjs(time).format('YYYY-MM-DD HH:mm:ss')
+    })
     const vm = new Vue({
       el: '#app',
       data: {
         brand: '',
-        //nextId: 4,
         list: [
           { id: 1, name: '宝马', status: true, time: new Date() },
           { id: 2, name: '奔驰', status: false, time: new Date() },
@@ -87,8 +90,8 @@
           this.list = this.list.filter(item => item.id !== id)
         },
         add() {
-          if ('' === this.brand) {
-            alert('必须填写品牌名称')
+          if (this.brand === '') {
+            alert('请输入品牌名')
             return
           }
           this.list.push({
@@ -97,8 +100,6 @@
             status: true,
             time: new Date()
           })
-         // this.nextId++
-          this.brand = ''
         }
       }
     })
