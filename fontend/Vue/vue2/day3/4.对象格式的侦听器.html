@@ -25,12 +25,15 @@
 
             },
             watch: {
-                username(newVal, oldVal) {
-                    // console.log(newVal, oldVal)
-                    if (newVal === '') return
-                    $.get('https://www.escook.cn/api/finduser/' + newVal, function (res) {
-                        console.log(res);
-                    })
+                username: {
+                    handler(newVal, oldVal) {
+                        console.log(newVal, oldVal);
+                        if (newVal === '') return
+                        $.get('https://www.escook.cn/api/finduser/' + newVal, res => {
+                            console.log(res);
+                        })
+                    },
+                    immediate: true
                 }
             }
         })
