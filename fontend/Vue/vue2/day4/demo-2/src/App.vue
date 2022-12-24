@@ -1,30 +1,36 @@
 <template>
   <div class="app-container">
-    <h1>App 根组件</h1>
+    <h1>App 根组件 --- {{ countFromSon }}</h1>
+    <p>{{ userinfo }}}</p>
     <hr/>
 
     <div class="box">
       <!-- 渲染 Left 组件和 Right 组件 -->
-      <Left></Left>
-      <Right></Right>
+      <Left :msg="message" :user="userinfo"></Left>
+      <Right @numchange="getNewCount"></Right>
     </div>
-
-    <hr>
-
-    <Test info="你好"></Test>
   </div>
 </template>
 
 <script>
 import Left from '@/components/Left.vue'
 import Right from '@/components/Right.vue'
-import Test from '@/components/Test.vue'
 
 export default {
+  data() {
+    return {
+      message: 'hello 132 的宝门！',
+      userinfo: {name: 'wsc', age: 18},
+      countFromSon: 0
+    }
+  },
   components: {
-    Left,
-    Right,
-    Test
+    Left, Right
+  },
+  methods: {
+    getNewCount(val) {
+      this.countFromSon = val
+    }
   }
 }
 </script>
